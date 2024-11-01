@@ -26,7 +26,6 @@ namespace ContactAppProject.Services
 
         public User GetUser(int userId)
         {
-            //return _users.FirstOrDefault(u => u.UserId == userId && u.IsActive);
             return _users.FirstOrDefault(u => u.UserId == userId); 
         }
 

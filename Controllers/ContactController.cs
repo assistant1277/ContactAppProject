@@ -40,9 +40,9 @@ namespace ContactAppProject.Controllers
             //and ignoring uppercase or lowercase difference in name comparison
             //and it will prevent adding new contact with duplicate name
             //and if such contact already exists then throw error to let user know
-            //.Any() -> Checks if there is any contact in list that matches condition inside the parentheses
+            //.Any() ->check if there is any contact in list that matches condition inside parentheses
             // and c -> is shorthand way of saying for each contact in list and
-            //c.ContactName.Equals(contact.ContactName, StringComparison.OrdinalIgnoreCase) -> check if ContactName of any existing contact
+            //c.ContactName.Equals(contact.ContactName,StringComparison.OrdinalIgnoreCase) -> check if ContactName of any existing contact
             //c.ContactName matches ContactName of new contact being added contact.ContactName
             // and Equals(StringComparison.OrdinalIgnoreCase) compares names in case insensitive style so Om and om would be considered equal
             if (_contactService.GetAllContacts().Any(c => c.ContactName.Equals(contact.ContactName, StringComparison.OrdinalIgnoreCase)))
@@ -53,7 +53,7 @@ namespace ContactAppProject.Controllers
             //check if contact name is either empty or actually number
             //and if either of these conditions is true show error message and
             //int.TryParse tries to convert text in ContactName to number integer
-            //out _ part is where it would normally store result if it were number but since we dont need it here then _ is used as a placeholder
+            //out _ part is where it would normally store result if it were number but since we dont need it here then _ is used as placeholder
             //and if ContactName is number and TryParse return true otherwise it return false
             if (string.IsNullOrEmpty(contact.ContactName) || int.TryParse(contact.ContactName, out _))
             {

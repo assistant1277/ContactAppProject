@@ -19,14 +19,14 @@ namespace ContactAppProject.Presentations
 
         public MainMenu(UserController userController, ContactController contactController)
         {
-            _userController = userController;
-            _contactController = contactController;
+            _userController =userController;
+            _contactController =contactController;
         }
 
         public void Show()
         {
-            int userId = GetUserId();
-            if (userId == -1)
+            int userId=GetUserId();
+            if (userId== -1)
             {
                 return;
             }
@@ -51,15 +51,15 @@ namespace ContactAppProject.Presentations
 
         private void ShowMenuForUserRole(User user)
         {
-            if (user.Role == UserRole.ADMIN)
+            if (user.Role==UserRole.ADMIN)
             {
-                var adminMenu = new AdminMenu(_userController);
+                var adminMenu=new AdminMenu(_userController);
                 Console.WriteLine($"\nUser id exists and user is active-> {user.IsActive} and\nuser is {user.Role} \nand now redirecting to submenu 1");
                 adminMenu.ShowAdminMenu();
             }
             else
             {
-                var staffMenu = new StaffMenu(_contactController);
+                var staffMenu=new StaffMenu(_contactController);
                 Console.WriteLine($"\nUser id exists and user is active ->{user.IsActive} and\nuser is not admin it is {user.Role} \nand now redirecting to submenu 2");
                 staffMenu.ShowStaffMenu();
             }
@@ -68,7 +68,11 @@ namespace ContactAppProject.Presentations
         private int GetUserId()
         {
             Console.Write("Enter user id -> ");
-            if (!int.TryParse(Console.ReadLine(), out int userId))
+
+            //try to convert user input to integer number and store it in 'userId'
+            //and if input cant be converted to number show error message and return -1
+            //out keyword means that userId will store number if conversion is successfull
+            if (!int.TryParse(Console.ReadLine(),out int userId))
             {
                 Console.WriteLine("Invalid user id format and enter valid number");
                 return -1;
@@ -79,11 +83,11 @@ namespace ContactAppProject.Presentations
         public static void Start()
         {
             Console.WriteLine("***** Welcome to Contact App *****\n");
-            var userService = new UserService();
-            var contactService = new ContactService();
-            var userController = new UserController(userService);
-            var contactController = new ContactController(contactService);
-            var mainMenu = new MainMenu(userController, contactController);
+            var userService=new UserService();
+            var contactService =new ContactService();
+            var userController= new UserController(userService);
+            var contactController=new ContactController(contactService);
+            var mainMenu =new MainMenu(userController,contactController);
             mainMenu.Show();
         }
     }

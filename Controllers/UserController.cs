@@ -13,14 +13,14 @@ namespace ContactAppProject.Controllers
 
         public UserController(IUserService userService)
         {
-            _userService = userService;
+            _userService =userService;
         }
 
-        public List<User> GetAllUsers() => _userService.GetAllUsers();
+        public List<User> GetAllUsers()=> _userService.GetAllUsers();
 
         public User GetUser(int userId)
         {
-            var user = _userService.GetUser(userId);
+            var user =_userService.GetUser(userId);
             if (user == null)
             {
                 throw new EntityNotFoundException("\nUser not found");
@@ -34,12 +34,12 @@ namespace ContactAppProject.Controllers
 
         public void AddUser(User user)
         {
-            if (string.IsNullOrEmpty(user.UserName) || user.UserName.Length < 3 || user.UserName.Length > 20)
+            if (string.IsNullOrEmpty(user.UserName)|| user.UserName.Length<3 ||user.UserName.Length>20)
             {
                 throw new InvalidInputException("\nInvalid username format and username must be 3-20 characters long");
             }
 
-            if (!Enum.IsDefined(typeof(UserRole), user.Role))
+            if (!Enum.IsDefined(typeof(UserRole),user.Role))
             {
                 throw new InvalidInputException("\nInvalid user role specified");
             }
@@ -49,7 +49,7 @@ namespace ContactAppProject.Controllers
         public void UpdateUser(User user)
         {
             var existingUser = GetUser(user.UserId);
-            if (string.IsNullOrEmpty(user.UserName) || user.UserName.Length < 3 || user.UserName.Length > 20)
+            if (string.IsNullOrEmpty(user.UserName) ||user.UserName.Length<3|| user.UserName.Length>20)
             {
                 throw new InvalidInputException("\nInvalid username format and username must be 3-20 characters long");
             }
@@ -64,12 +64,16 @@ namespace ContactAppProject.Controllers
         public void DeleteUser(int userId)
         {
             var user = GetUser(userId);
-            if (string.IsNullOrEmpty(user.UserName) || user.UserName.Length < 3 || user.UserName.Length > 20)
+            if (string.IsNullOrEmpty(user.UserName) ||user.UserName.Length<3|| user.UserName.Length>20)
             {
                 throw new InvalidInputException("\nInvalid username format and username must be 3-20 characters long");
             }
 
-            if (!Enum.IsDefined(typeof(UserRole), user.Role))
+            //check if given user.Role is valid role within UserRole type
+            //and if user.Role is not valid role then throw error indicating invalid role
+            //typeof(UserRole) get type information for UserRole which is enumeration means set of predefined specific values
+            //means lets us check if value belong to valid set of options for UserRole
+            if (!Enum.IsDefined(typeof(UserRole),user.Role))
             {
                 throw new InvalidInputException("\nInvalid user role specified");
             }

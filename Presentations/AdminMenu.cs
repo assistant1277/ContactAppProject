@@ -16,7 +16,7 @@ namespace ContactAppProject.Presentations
 
         public AdminMenu(UserController userController)
         {
-            _userController = userController;
+            _userController=userController;
         }
 
         public void ShowAdminMenu()
@@ -78,10 +78,10 @@ namespace ContactAppProject.Presentations
                     switch (roleInput)
                     {
                         case "1":
-                            userRole = UserRole.STAFF;
+                            userRole= UserRole.STAFF;
                             break;
                         case "2":
-                            userRole = UserRole.ADMIN; 
+                            userRole=UserRole.ADMIN; 
                             break;
                         default:
                             Console.WriteLine("\nInvalid role selection and defaulting to staff");
@@ -89,7 +89,7 @@ namespace ContactAppProject.Presentations
                             break;
                     }
 
-                    var user = new User { UserName = userName, Role = userRole };
+                    var user =new User{UserName=userName,Role=userRole};
                     _userController.AddUser(user);
                     Console.WriteLine("\nUser added successfully");
                     break;
@@ -114,12 +114,12 @@ namespace ContactAppProject.Presentations
                 try
                 {
                     Console.Write("Enter user id to update -> ");
-                    int userId = int.Parse(Console.ReadLine());
-                    var user = _userController.GetUser(userId);
+                    int userId =int.Parse(Console.ReadLine());
+                    var user= _userController.GetUser(userId);
 
                     Console.Write("Enter new username -> ");
                     string newUserName = Console.ReadLine();
-                    user.UserName = newUserName;
+                    user.UserName=newUserName;
 
                     Console.Write("\nDo you want to change user role if yes press 'y' if no press 'n' -> ");
                     string changeRoleInput = Console.ReadLine();
@@ -127,29 +127,29 @@ namespace ContactAppProject.Presentations
                     //check if user enter 'y' to confirm their choice and
                     //ignoring whether they typed it in uppercase or lowercase
                     //so both 'y' and 'Y' will be treated as same answer
-                    if (changeRoleInput.Equals("y", StringComparison.OrdinalIgnoreCase))
+                    if (changeRoleInput.Equals("y",StringComparison.OrdinalIgnoreCase))
                     {
                         Console.WriteLine("Choose new role ->");
                         Console.WriteLine("1)Staff");
                         Console.WriteLine("2)Admin");
                         Console.Write("Select role -> ");
-                        string roleInput = Console.ReadLine();
+                        string roleInput= Console.ReadLine();
 
                         UserRole newUserRole;
                         switch (roleInput)
                         {
                             case "1":
-                                newUserRole = UserRole.STAFF;
+                                newUserRole=UserRole.STAFF;
                                 break;
                             case "2":
-                                newUserRole = UserRole.ADMIN; 
+                                newUserRole =UserRole.ADMIN; 
                                 break;
                             default:
                                 Console.WriteLine("\nInvalid role selection and role will not be changed");
-                                newUserRole = user.Role; 
+                                newUserRole =user.Role; 
                                 break;
                         }
-                        user.Role = newUserRole;
+                        user.Role=newUserRole;
                     }
                     _userController.UpdateUser(user);
                     Console.WriteLine("\nUser updated successfully");
@@ -174,7 +174,7 @@ namespace ContactAppProject.Presentations
                 try
                 {
                     Console.Write("Enter user id to delete -> ");
-                    int userId = int.Parse(Console.ReadLine());
+                    int userId =int.Parse(Console.ReadLine());
                     _userController.DeleteUser(userId);
                     Console.WriteLine("\nUser deleted successfully");
                     break;
@@ -194,7 +194,7 @@ namespace ContactAppProject.Presentations
 
         private void DisplayAllUsers()
         {
-            var users = _userController.GetAllUsers();
+            var users= _userController.GetAllUsers();
             foreach (var user in users)
             {
                 Console.WriteLine($"\nid -> {user.UserId}, name -> {user.UserName}, role -> {user.Role}, active -> {user.IsActive}");
@@ -208,8 +208,8 @@ namespace ContactAppProject.Presentations
                 try
                 {
                     Console.Write("Enter user id to find -> ");
-                    int userId = int.Parse(Console.ReadLine());
-                    var user = _userController.GetUser(userId);
+                    int userId =int.Parse(Console.ReadLine());
+                    var user=_userController.GetUser(userId);
                     Console.WriteLine($"\nFound user -> id -> {user.UserId}, name -> {user.UserName}, role -> {user.Role}, active -> {user.IsActive}");
                     break;
                 }
@@ -225,7 +225,7 @@ namespace ContactAppProject.Presentations
         private bool AskToContinue()
         {
             Console.Write("\nDo you want to try again if yes press 'y' if no press 'n' -> ");
-            string input = Console.ReadLine();
+            string input=Console.ReadLine();
             return input.ToLower() == "y";
         }
     }

@@ -19,10 +19,10 @@ namespace ContactAppProject.Controllers
 
         public ContactController(IContactService contactService)
         {
-            _contactService = contactService;
+            _contactService=contactService;
         }
 
-        public List<Contact> GetAllContacts() => _contactService.GetAllContacts();
+        public List<Contact> GetAllContacts()=>_contactService.GetAllContacts();
 
         public Contact GetContact(int contactId)
         {
@@ -45,7 +45,7 @@ namespace ContactAppProject.Controllers
             //c.ContactName.Equals(contact.ContactName,StringComparison.OrdinalIgnoreCase) -> check if ContactName of any existing contact
             //c.ContactName matches ContactName of new contact being added contact.ContactName
             // and Equals(StringComparison.OrdinalIgnoreCase) compares names in case insensitive style so Om and om would be considered equal
-            if (_contactService.GetAllContacts().Any(c => c.ContactName.Equals(contact.ContactName, StringComparison.OrdinalIgnoreCase)))
+            if (_contactService.GetAllContacts().Any(c => c.ContactName.Equals(contact.ContactName,StringComparison.OrdinalIgnoreCase)))
             {
                 throw new InvalidInputException("\ncontact with this name already exists");
             }
@@ -55,7 +55,7 @@ namespace ContactAppProject.Controllers
             //int.TryParse tries to convert text in ContactName to number integer
             //out _ part is where it would normally store result if it were number but since we dont need it here then _ is used as placeholder
             //and if ContactName is number and TryParse return true otherwise it return false
-            if (string.IsNullOrEmpty(contact.ContactName) || int.TryParse(contact.ContactName, out _))
+            if (string.IsNullOrEmpty(contact.ContactName) || int.TryParse(contact.ContactName,out _))
             {
                 throw new InvalidInputException("\nContact name cannot be empty and enter valid name not number");
             }
@@ -64,7 +64,7 @@ namespace ContactAppProject.Controllers
 
         public void UpdateContact(Contact contact)
         {
-            var existingContact = _contactService.GetContact(contact.ContactId);
+            var existingContact =_contactService.GetContact(contact.ContactId);
             if (existingContact == null)
             {
                 throw new EntityNotFoundException("\nContact not found");
@@ -78,7 +78,7 @@ namespace ContactAppProject.Controllers
 
         public void DeleteContact(int contactId)
         {
-            var contact = _contactService.GetContact(contactId);
+            var contact =_contactService.GetContact(contactId);
             if (contact == null)
             {
                 throw new EntityNotFoundException("\nContact not found");
@@ -91,7 +91,7 @@ namespace ContactAppProject.Controllers
             return _contactService.GetContactDetails(contactId);
         }
 
-        public void AddContactDetail(int contactId, string contactName, ContactDetail contactDetail)
+        public void AddContactDetail(int contactId,string contactName,ContactDetail contactDetail)
         {
             var contact = _contactService.GetContact(contactId);
             if (contact == null)
@@ -99,7 +99,7 @@ namespace ContactAppProject.Controllers
                 throw new EntityNotFoundException("\nContact not found with this id");
             }
 
-            if (!contact.ContactName.Equals(contactName, StringComparison.OrdinalIgnoreCase))
+            if (!contact.ContactName.Equals(contactName,StringComparison.OrdinalIgnoreCase))
             {
                 throw new InvalidInputException("\nContact name does not match with your provided id");
             }
@@ -114,7 +114,7 @@ namespace ContactAppProject.Controllers
 
         public void UpdateContactDetail(ContactDetail contactDetail)
         {
-            var existingDetail = _contactService.GetContactDetails(contactDetail.ContactDetailId);
+            var existingDetail =_contactService.GetContactDetails(contactDetail.ContactDetailId);
             if (existingDetail == null)
             {
                 throw new EntityNotFoundException("\nContact detail not found");
@@ -124,7 +124,7 @@ namespace ContactAppProject.Controllers
 
         public void DeleteContactDetail(int detailId)
         {
-            var contactDetail = _contactService.GetContactDetails(detailId);
+            var contactDetail= _contactService.GetContactDetails(detailId);
             if (contactDetail == null)
             {
                 throw new EntityNotFoundException("\nContact detail not found");
@@ -134,7 +134,7 @@ namespace ContactAppProject.Controllers
 
         public ContactDetail GetContactDetail(int detailId)
         {
-            var contactDetail = _contactService.GetContactDetail(detailId);
+            var contactDetail= _contactService.GetContactDetail(detailId);
             if (contactDetail == null)
             {
                 throw new EntityNotFoundException("\nContact detail not found");

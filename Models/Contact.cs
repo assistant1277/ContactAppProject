@@ -10,6 +10,6 @@ namespace ContactAppProject.Models
     {
         public int ContactId { get; set; }
         public string ContactName { get; set; }
-        public bool IsActive { get; set; } = true;
+        public bool IsActive { get; set; }=true;
     }
 }

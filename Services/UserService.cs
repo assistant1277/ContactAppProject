@@ -14,8 +14,8 @@ namespace ContactAppProject.Services
         {
             _users = new List<User>
             {
-                new User { UserId = 1, UserName = "deepak mishra", Role = UserRole.ADMIN, IsActive = true },
-                new User { UserId = 2, UserName = "sanket patil", Role = UserRole.STAFF, IsActive = true }
+                new User {UserId=1,UserName= "deepak mishra",Role=UserRole.ADMIN,IsActive =true },
+                new User {UserId=2,UserName= "sanket patil",Role= UserRole.STAFF,IsActive= true }
             };
         }
 
@@ -26,28 +26,28 @@ namespace ContactAppProject.Services
 
         public User GetUser(int userId)
         {
-            return _users.FirstOrDefault(u => u.UserId == userId); 
+            return _users.FirstOrDefault(u=> u.UserId == userId); 
         }
 
         public void AddUser(User user)
         {
-            user.UserId = _users.Max(u => u.UserId) + 1; 
+            user.UserId = _users.Max(u => u.UserId)+1; 
             _users.Add(user);
         }
 
         public void UpdateUser(User updatedUser)
         {
-            var user = GetUser(updatedUser.UserId);
+            var user =GetUser(updatedUser.UserId);
             if (user != null)
             {
-                user.UserName = updatedUser.UserName;
-                user.Role = updatedUser.Role;
+                user.UserName=updatedUser.UserName;
+                user.Role= updatedUser.Role;
             }
         }
 
         public void DeleteUser(int userId)
         {
-            var user = GetUser(userId);
+            var user=GetUser(userId);
             if (user != null)
                 user.IsActive = false; 
         }

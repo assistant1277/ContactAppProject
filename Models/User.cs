@@ -11,7 +11,7 @@ namespace ContactAppProject.Models
     {
         public int UserId { get; set; }
         public string UserName { get; set; }
-        public bool IsActive { get; set; } = true;
+        public bool IsActive { get; set; } =true;
         public Enums.UserRole Role { get; set; }
     }
 }

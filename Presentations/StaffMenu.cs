@@ -11,7 +11,7 @@ namespace ContactAppProject.Presentations
         private readonly ContactController _contactController;
         public StaffMenu(ContactController contactController)
         {
-            _contactController = contactController;
+            _contactController=contactController;
         }
 
         public void ShowStaffMenu()
@@ -89,8 +89,8 @@ namespace ContactAppProject.Presentations
                 try
                 {
                     Console.Write("Enter contact name -> ");
-                    string contactName = Console.ReadLine();
-                    var contact = new Contact { ContactName = contactName };
+                    string contactName=Console.ReadLine();
+                    var contact= new Contact {ContactName=contactName };
                     _contactController.AddContact(contact);
                     Console.WriteLine("\nContact added successfully");
                     break; 
@@ -115,10 +115,10 @@ namespace ContactAppProject.Presentations
                 try
                 {
                     Console.Write("Enter contact id to update -> ");
-                    int contactId = int.Parse(Console.ReadLine());
-                    var contact = _contactController.GetContact(contactId);
+                    int contactId= int.Parse(Console.ReadLine());
+                    var contact= _contactController.GetContact(contactId);
                     Console.Write("Enter new contact name -> ");
-                    contact.ContactName = Console.ReadLine();
+                    contact.ContactName =Console.ReadLine();
                     _contactController.UpdateContact(contact);
                     Console.WriteLine("\nContact updated successfully");
                     break;
@@ -147,7 +147,7 @@ namespace ContactAppProject.Presentations
                 try
                 {
                     Console.Write("Enter contact id to delete -> ");
-                    int contactId = int.Parse(Console.ReadLine());
+                    int contactId=int.Parse(Console.ReadLine());
                     _contactController.DeleteContact(contactId);
                     Console.WriteLine("\nContact deleted successfully");
                     break;
@@ -167,7 +167,7 @@ namespace ContactAppProject.Presentations
         
         private void DisplayAllContacts()
         {
-            var contacts = _contactController.GetAllContacts();
+            var contacts= _contactController.GetAllContacts();
             foreach (var contact in contacts)
             {
                 Console.WriteLine($"\nContact id -> {contact.ContactId}, name -> {contact.ContactName}, active -> {contact.IsActive}");
@@ -181,8 +181,8 @@ namespace ContactAppProject.Presentations
                 try
                 {
                     Console.Write("Enter contact id -> ");
-                    int contactId = int.Parse(Console.ReadLine());
-                    var contact = _contactController.GetContact(contactId);
+                    int contactId= int.Parse(Console.ReadLine());
+                    var contact= _contactController.GetContact(contactId);
                     Console.WriteLine($"\nFound contact and id -> {contact.ContactId}, name -> {contact.ContactName}, active -> {contact.IsActive}");
                     break;
                 }
@@ -241,24 +241,24 @@ namespace ContactAppProject.Presentations
                 try
                 {
                     Console.Write("Enter contact id for detail -> ");
-                    int contactId = int.Parse(Console.ReadLine());
+                    int contactId= int.Parse(Console.ReadLine());
 
                     Console.Write("Enter contact name for verification -> ");
-                    string contactName = Console.ReadLine();
+                    string contactName =Console.ReadLine();
 
                     Console.Write("Enter detail type like (email,phone) -> ");
-                    string detailType = Console.ReadLine();
+                    string detailType =Console.ReadLine();
                     Console.Write("Enter detail value -> ");
-                    string detailValue = Console.ReadLine();
+                    string detailValue= Console.ReadLine();
 
-                    var contactDetail = new ContactDetail
+                    var contactDetail= new ContactDetail
                     {
-                        ContactId = contactId,
-                        DetailType = detailType,
-                        DetailValue = detailValue
+                        ContactId= contactId,
+                        DetailType= detailType,
+                        DetailValue= detailValue
                     };
 
-                    _contactController.AddContactDetail(contactId, contactName, contactDetail);
+                    _contactController.AddContactDetail(contactId,contactName,contactDetail);
 
                     Console.WriteLine("\nContact detail added successfully");
                     break;
@@ -287,8 +287,8 @@ namespace ContactAppProject.Presentations
                 try
                 {
                     Console.Write("Enter detail id to update -> ");
-                    int detailId = int.Parse(Console.ReadLine());
-                    var contactDetail = _contactController.GetContactDetail(detailId);
+                    int detailId=int.Parse(Console.ReadLine());
+                    var contactDetail= _contactController.GetContactDetail(detailId);
                     Console.Write("Enter new detail type like (email,phone) -> ");
                     contactDetail.DetailType = Console.ReadLine();
                     Console.Write("Enter new detail value -> ");
@@ -319,7 +319,7 @@ namespace ContactAppProject.Presentations
                 try
                 {
                     Console.Write("Enter detail id to delete -> ");
-                    int detailId = int.Parse(Console.ReadLine());
+                    int detailId=int.Parse(Console.ReadLine());
                     _contactController.DeleteContactDetail(detailId);
                     Console.WriteLine("\nContact detail deleted successfully");
                 }
@@ -342,13 +342,13 @@ namespace ContactAppProject.Presentations
                 try
                 {
                     Console.Write("Enter contact id to display details -> ");
-                    int contactId = int.Parse(Console.ReadLine());
+                    int contactId= int.Parse(Console.ReadLine());
 
-                    var contact = _contactController.GetContact(contactId);
+                    var contact= _contactController.GetContact(contactId);
                     Console.WriteLine($"\nContact information ->");
                     Console.WriteLine($"\nContact id -> {contact.ContactId}, name -> {contact.ContactName}, active -> {contact.IsActive}");
 
-                    var contactDetails = _contactController.GetContactDetails(contactId);
+                    var contactDetails=_contactController.GetContactDetails(contactId);
 
                     if (contactDetails.Any())
                     {
@@ -379,8 +379,8 @@ namespace ContactAppProject.Presentations
         private bool AskToContinue()
         {
             Console.Write("\nDo you want to try again if yes press 'y' if no press 'n' -> ");
-            string input = Console.ReadLine();
-            return input.ToLower() == "y";
+            string input =Console.ReadLine();
+            return input.ToLower()=="y";
         }
     }
 }

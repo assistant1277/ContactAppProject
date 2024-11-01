@@ -42,7 +42,7 @@ namespace ContactAppProject.Controllers
             //and if such contact already exists then throw error to let user know
             //.Any() ->check if there is any contact in list that matches condition inside parentheses
             // and c -> is shorthand way of saying for each contact in list and
-            //c.ContactName.Equals(contact.ContactName,StringComparison.OrdinalIgnoreCase) -> check if ContactName of any existing contact
+            //c.ContactName.Equals(contact.ContactName,StringComparison.OrdinalIgnoreCase)->check if ContactName of any existing contact
             //c.ContactName matches ContactName of new contact being added contact.ContactName
             // and Equals(StringComparison.OrdinalIgnoreCase) compares names in case insensitive style so Om and om would be considered equal
             if (_contactService.GetAllContacts().Any(c => c.ContactName.Equals(contact.ContactName,StringComparison.OrdinalIgnoreCase)))
